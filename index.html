@@ -1,256 +1,271 @@
-<!doctype html><html><head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
-    <style>body{margin:0;padding:16px;box-sizing:border-box;font-family:system-ui,sans-serif;}</style>
-    </head><body><div class="min-h-screen bg-pink-50 text-stone-800 pb-32 font-sans">
-  <header class="bg-gradient-to-b from-pink-200 to-pink-300 text-white text-center pt-0 pb-10 px-4 shadow-lg">
-    <img src="https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxtEfFeY1LLbV2KRFbOQ0Ngst0.jpg?Expires=1794411036&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=RTi2n2DNQlIihn6EiQa0gEWZnVftsqNfX~CHaBsbCy4QXLdJyAk~lbnvbnnE2~tOLXIPZRMnX0BUr4jJ-yPCwTV5Bkl-t1~IlrhHMBRW1nQ4t~DyX3NDvEmcC7U9Zqg~36FKqEpmNob9q3kn0fkGF~wCpmuOPEYs1zT7A4ZnqTLF57Rbscsb38uOt5DA265SAH16l5hs8gF3S3LTZEjenkor977UjHXgDMQHDay2I1q0L5PFOm2QIs-rpyn~T2o1LoQmcynJ4oyTAy5~xa51tWcLfjTToK6A4eZHE6gCtJC4udbKn1gAhRViDR~fj2hm2FjfeVAejwIkh~MtfH65Ig__" alt="Ana Aguilera - Chef" class="relative z-10 w-64 h-64 md:w-80 md:h-80 object-cover mx-auto mb-4 -mt-10" style="filter: contrast(1.12) saturate(1.15) brightness(1.04); -webkit-mask-image: radial-gradient(circle, #000 62%, transparent 72%); mask-image: radial-gradient(circle, #000 62%, transparent 72%);">
-    <p class="text-sm tracking-[0.3em] uppercase text-pink-100">Chef</p>
-    <h1 class="text-4xl md:text-5xl font-bold mt-1" style="font-family: Georgia, serif;">Ana Aguilera</h1>
-    <p class="mt-3 text-lg text-pink-50">Cardápio Especial de Natal ✨</p>
-  </header>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen bg-pink-50 text-stone-800 pb-32 font-sans">
+    <header class="bg-gradient-to-b from-pink-200 to-pink-300 text-white text-center pt-0 pb-10 px-4 shadow-lg">
+      <img src="https://chefanaaguilera.github.io/cardapio/boneca.png" alt="Ana Aguilera - Chef" class="relative z-10 block w-64 h-64 md:w-80 md:h-80 object-cover mx-auto mb-0 mt-8">
+      <p class="text-sm tracking-[0.3em] uppercase text-pink-100">Chef</p>
+      <h1 class="text-4xl md:text-5xl font-bold mt-1" style="font-family: Georgia, serif;">Ana Aguilera</h1>
+      <p class="mt-3 text-lg text-pink-50">Cardápio Especial de Natal ✨</p>
+    </header>
 
-  <nav class="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-pink-200 shadow-sm">
-    <div id="tabs" class="flex gap-2 overflow-x-auto px-4 py-3 max-w-6xl mx-auto"></div>
-  </nav>
+    <nav class="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-pink-200 shadow-sm">
+      <div id="tabs" class="flex gap-2 overflow-x-auto px-4 py-3 max-w-6xl mx-auto"></div>
+    </nav>
 
-  <main id="menu" class="max-w-6xl mx-auto px-4 py-8 space-y-12"></main>
+    <main id="menu" class="max-w-6xl mx-auto px-4 py-8 space-y-12"></main>
 
-  <div class="fixed bottom-0 inset-x-0 z-30 bg-pink-400 text-white shadow-2xl">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-      <div>
-        <p class="text-sm text-pink-100"><span id="count">0</span> item(ns) no pedido</p>
-        <p class="text-xl font-bold" id="total">R$ 0,00</p>
-      </div>
-      <button id="verPedido" class="bg-white hover:bg-pink-100 text-pink-700 font-semibold px-5 py-2 rounded-full disabled:opacity-50">Ver pedido</button>
-    </div>
-  </div>
-
-  <div id="modal" class="hidden fixed inset-0 z-40 bg-black/50 flex items-end md:items-center justify-center p-4">
-    <div class="bg-white rounded-2xl w-full max-w-lg max-h-[80vh] flex flex-col shadow-2xl">
-      <div class="flex justify-between items-center px-5 py-4 border-b border-pink-100">
-        <h2 class="text-xl font-bold text-pink-700">Seu pedido</h2>
-        <button id="fechar" class="text-stone-500 hover:text-stone-800 text-2xl leading-none">&times;</button>
-      </div>
-      <div id="lista" class="px-5 py-4 overflow-y-auto space-y-3 flex-1"></div>
-      <div class="px-5 py-4 border-t border-pink-100 flex justify-between items-center">
-        <span class="font-semibold">Total</span>
-        <span id="totalModal" class="text-xl font-bold text-pink-700">R$ 0,00</span>
-      </div>
-      <div class="px-5 py-4 border-t border-pink-100 space-y-3">
-        <input id="cliNome" type="text" placeholder="Seu nome" class="w-full border border-pink-200 rounded-lg px-3 py-2 focus:outline-none focus:border-pink-400">
-        <input id="cliTel" type="tel" placeholder="Telefone com DDD, ex: (11) 99999-9999" class="w-full border border-pink-200 rounded-lg px-3 py-2 focus:outline-none focus:border-pink-400">
-        <p id="erroCli" class="hidden text-sm text-red-600"></p>
-        <button id="enviarWhats" class="w-full bg-green-500 hover:bg-green-400 text-white font-semibold py-3 rounded-full">Enviar pedido pelo WhatsApp</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<style>
-  html { scroll-behavior: smooth; }
-  .tab-active { background-color: #f472b6; color: #fff; }
-</style>
-
-<script>
-  const categorias = [
-    { id: 'salgados', label: 'Salgados' },
-    { id: 'paes', label: 'Pães & Patês' },
-    { id: 'rocamboles', label: 'Rocamboles' },
-    { id: 'tortas', label: 'Tortas' },
-    { id: 'bolos', label: 'Bolo & Panetones' },
-    { id: 'biscoitos', label: 'Biscoitos' }
-  ];
-
-  const itens = [
-    { id: 'emp-pera', cat: 'salgados', nome: 'Empadão Pêra & Gorgonzola', desc: 'Pera delicadamente combinada com queijo gorgonzola, mel e nozes.', preco: 120, emoji: '🍐', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxwPS0gQp0qXswtNcQ63CcfsRU.jpeg?Expires=1794412602&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=dduUSbZvq7ujELlb0eYOx7MjfyIg~tI0Zj~~r6jK8byXiU44nDCyz6IBaezqbvex8HTqz5taoFVBfyqXOhf4-4cvCySLM06CTnDditHjcZ8Z0kZX4fx0CRngDoknm-ona6M1rhKuCGUNF~n3DT-SgY2zbnjlpuWGCtDDSszjCRoAo1DpUVm~irE-0W8IJ0ww9Icx8-KWxtlpnU4DL1M9NmQGGE-Q0mzzNMDtdbkr9P6O7WAGQv-2fYmRXHqfPAELtvBV5Ab~hj9~q2QQri8wPkBOdSDfcyOI~ldLMfMWTjzaKEN3nD6Jzz1xxuOyuQTqu~JL7ghHtrtDiJDv0~sgkw__', pos: '50% 50%', bg: 'from-amber-100 to-orange-200' },
-    { id: 'emp-camarao', cat: 'salgados', nome: 'Empadão de Camarão', desc: 'Recheio cremoso e generoso de camarões.', preco: 120, emoji: '🦐', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxwPS0gQp0qXswtNcQ63CcfsRU.jpeg?Expires=1794412602&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=dduUSbZvq7ujELlb0eYOx7MjfyIg~tI0Zj~~r6jK8byXiU44nDCyz6IBaezqbvex8HTqz5taoFVBfyqXOhf4-4cvCySLM06CTnDditHjcZ8Z0kZX4fx0CRngDoknm-ona6M1rhKuCGUNF~n3DT-SgY2zbnjlpuWGCtDDSszjCRoAo1DpUVm~irE-0W8IJ0ww9Icx8-KWxtlpnU4DL1M9NmQGGE-Q0mzzNMDtdbkr9P6O7WAGQv-2fYmRXHqfPAELtvBV5Ab~hj9~q2QQri8wPkBOdSDfcyOI~ldLMfMWTjzaKEN3nD6Jzz1xxuOyuQTqu~JL7ghHtrtDiJDv0~sgkw__', pos: '50% 50%', bg: 'from-orange-100 to-red-200' },
-    { id: 'emp-pernil', cat: 'salgados', nome: 'Empadão de Pernil', desc: 'Suculência do pernil com alho-poró levemente adocicado e o perfume especial do tomilho.', preco: 120, emoji: '🍖', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxwPS0gQp0qXswtNcQ63CcfsRU.jpeg?Expires=1794412602&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=dduUSbZvq7ujELlb0eYOx7MjfyIg~tI0Zj~~r6jK8byXiU44nDCyz6IBaezqbvex8HTqz5taoFVBfyqXOhf4-4cvCySLM06CTnDditHjcZ8Z0kZX4fx0CRngDoknm-ona6M1rhKuCGUNF~n3DT-SgY2zbnjlpuWGCtDDSszjCRoAo1DpUVm~irE-0W8IJ0ww9Icx8-KWxtlpnU4DL1M9NmQGGE-Q0mzzNMDtdbkr9P6O7WAGQv-2fYmRXHqfPAELtvBV5Ab~hj9~q2QQri8wPkBOdSDfcyOI~ldLMfMWTjzaKEN3nD6Jzz1xxuOyuQTqu~JL7ghHtrtDiJDv0~sgkw__', pos: '50% 50%', bg: 'from-rose-100 to-amber-200' },
-
-    { id: 'cesta-paes', cat: 'paes', nome: 'Cesta de Pães', desc: '2 baguetes, 2 pães francês e 1 pão italiano. Perfeitos para acompanhar os patês.', preco: 100, emoji: '🥖', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxvgkOG6cyfdq2lBHnq2Qr37bJ.jpeg?Expires=1794412246&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=ZLtBgokJyumE6jomz2WvDtl9~eNjH597mRX7DTnauByoJTLg-sn8SBFIhY3G2HC4Y64M2staw9HJwugEv9mC19ft2gDO9eOfgGEBY1yHyYvSERvh8D~Qlf7pyjyOFlJ0ZWej4xljT5pEVITCUmJRpetb1zabXTnI0DHL~mOqPuHmxjUx7MA6ilOzSe0muTg1mc-FYdNYwKWgNC09txcrpUGr34AUplIt-cazvzqkAa5Puw~ooiz4gumoaJYoG2FaJJYwDgtMbwysX34NuJYVlkW7CTJUiH7qKaHPt~O2WRAmcr5nFYaqnDGIZUgqqS9kqKcZehlbyKyqkfsh92y6Vg__', pos: '50% 50%', bg: 'from-yellow-100 to-amber-300' },
-    { id: 'homus', cat: 'paes', nome: 'Patê de Homus', desc: '100g. Cremoso e suave, ideal para acompanhar a cesta de pães.', preco: 20, emoji: '🫘', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxwaC7Vnf6oO2yEdaXJddlGnFw.jpg?Expires=1794412687&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=XJrZa0oI98tgOUD2oHkFaEUpJy35Vw-XQXQ51PRhmD-5NKdA-RO5Qve~i-sHYNQpexDJjCkNtTW-LNSsUyifJZTP~a~0B-qVvdCLj8CenydzbyN2EL09WEUvxrJdt3792LcRNMltZU0-TiRNkFivsUys7DNwxTSOb1998RiJ5fS2kJHC3I-xef9nHBDFtMmBxekTPb0sfZh16aTiLnprrorzC5Pn6gt2EYNClbatyxM1zNjV6KR012ZaSJbyK8e5nRwHdpMFTSqqX1hcxuO1bpAZ-BObJzkzfsvZYHsXo3IM4tZrR2WeohkMRQqeyHy~bF6-wzchwqnOChQLzYJv3A__', pos: '50% 50%', bg: 'from-lime-100 to-yellow-200' },
-    { id: 'patê-azeitonas', cat: 'paes', nome: 'Patê de Azeitonas Pretas', desc: '100g. Sabor intenso e marcante, perfeito com os pães.', preco: 20, emoji: '🫒', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxwcvLkf0dzVnnWQCOuOa2AlGu.jpg?Expires=1794412709&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=p0h1aErxD9iaVJRmagbhJWwamnekIlsA4AwszxmYng~8RvFgnrsR~HRf27Qo~uFVtJP0jlKkFFLoGkiN1FN~rqLO096cc9vBiVH4tBOXT1-j02WQVDyl-mmPvhlWVs0M8YYAJlXZ3eIw7H24K5GOh5iWsIXCkaPuSlBBRjVpBp3jAQNjTayemG2yYyz3vi~MtcdYGanB7QF2hWhuRt1AAqp-8UwFtxUa6ok0SUcs334mml-0Oow7BHqmAM9iXzv9N1WDoKkzWQrc43b1TgRhN5TZtjmZ~3TkGwuti7vpkSMhqww9AnV76A4-3zcOSfkH4k-1AEGM1BA22zTbiX4Zow__', pos: '50% 50%', bg: 'from-stone-200 to-stone-400' },
-
-    { id: 'roc-tropical', cat: 'rocamboles', nome: 'Rocambole Magia Tropical', desc: 'Cocada cremosa e abacaxi.', preco: 100, emoji: '🍍', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3Lxv11pWt5aikCfoQezwQfPuJuO.jpeg?Expires=1794411914&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=YcMzZkFerCiZbd9dmTCs97pxJLQCEnkCmkx9Tq6hJ-54SVFN1PhyuPnZ5yBzhQnYGTyNqL7Cuf8Ayh210eh~JpCdB3sUBsb5UVqybDe5ePEmkcwJfolhwqtOGuD6B96L2TNFA0xqj4rBApVOHP1s9qQqJt1qa8WCFJZS6JRnvYXHfmyfhKUio-KOqcD4Q5mEvLdkVeZOJescEKFhs89bPpUABw1xKHzPMk0cHS6lV9Q-uvf~CanlgdCJCXxSEmKWZxhTl2i4tXgwv-Gy850lrNE79QNZlYkDUxr7peRx4VfLdC08VU5JdnFnaunipxYJREbdCw5rd2hJ6d6p63K1Lg__', pos: '50% 70%', bg: 'from-yellow-100 to-lime-200' },
-    { id: 'roc-natalina', cat: 'rocamboles', nome: 'Rocambole Delícia Natalina', desc: 'Maçã, canela e doce de leite.', preco: 100, emoji: '🍎', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxwrYUJrvNAeft5mMlRRsZzgg3.jpeg?Expires=1794412825&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=hJVJnD8jiAliMSNKtLXZhbGrwD7nX2HfJlq5D7kKK~8apbsPY1-8U0UcSCplyJYBLMZtfelkYxHw7rj90jcUWjYEO002z6BxvgPNSOdvBJ~igrpLgfG08K8aSpAJELTGCH8vyoj9nAXi4NbpaeLXGR6fRQ0szo0~VxyhExtfBT2M00ca3Ww-9akwYX310bzM3b2hUrfSFhJH-uv48OpsAwLhxw71XZSm~VuGJr4s7al5FZq8QWk9UYghA3bGAYvqZn67FzJsancFZdXt8QK-4vcf-EKyFYZ9xwbb2ohTTrZVvh-fkr~TzocI2GXZZBgBV57ZVnUEIpjG5SbTQYhEXQ__', pos: '50% 50%', zoom: 1.6, bg: 'from-red-100 to-amber-200' },
-    { id: 'roc-red', cat: 'rocamboles', nome: 'Rocambole Red Velvet Natalino', desc: 'Brigadeiro cremoso de chocolate branco e morangos.', preco: 100, emoji: '🍓', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxuYT5ci2MFPoRqRbgOxKQjV82.jpeg?Expires=1794411687&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=Z2JT5yLZ8WzLJJyqnwnCDw84YFV-BMkew-m5t9wPqbsopLuKGFG2A9mTylurKoj~7XFNj8yi2x0YMP9JutfFZozWdUZTHVSD6dUaWFnpPZhxHt6ylZfxj6OuF7H8LooUzcMzAa0xyh1KzSF9eEoh57BI0GJzgJAS5soh45vmlbZnnJ4cX~OeDBQSsdk-BJT~wViGSy0oKmIxpmqVtgCrK4NR03EPm68nm7bGEyy-bRyd8KtbD5lDNPBQTKHHmQ~mnX8hnMvxcN2VDr2vFxL8n2obY-IzSa7gA3G1c2XK7njYD8N5NDMj9qYL7v-O3ns8cuq9TS0OTflb5Ycb8nI5bQ__', pos: '50% 60%', bg: 'from-pink-100 to-red-300' },
-
-    { id: 'torta-limao', cat: 'tortas', nome: 'Torta de Limão', desc: 'Creme cítrico e refrescante com o frescor do limão.', preco: 120, emoji: '🍋', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxuB50Kv2OA8lurHbYYI9YyGBk.jpeg?Expires=1794411500&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=VuuFvu5LFz0YN6JHAd734yjFl531DO~5FjjIZ8hP0MMyPudAppdiS0WTXpwaalaJ06DySlMp0FZgcz51UbVv8zUmD12RPRBSm0u5XphynOm0IiRTjNMf9fXx3uPTXXF3I~gk8J4D8ZNfKDUywWNOPAgFZN5iDp5k~y-Qkg2jwt0cXvT4G6VagSuf0L8G2m-CZWU~eFbeiB1hRDRzhUJjKAuK2lysO7APj0Z-aWNL78djFzz3t78CunfxkBwa~uc4PLXoLGSNggXpmPG8URcixIBdoBtJ4YYTbMGNt6iKN9XY4BKnXDdcufNJaJQbWLaFykfH7MDp7rnsqaTxh-ZvFg__', bg: 'from-yellow-100 to-lime-200' },
-    { id: 'torta-morango', cat: 'tortas', nome: 'Torta de Morango', desc: 'Creme leve com morangos frescos e doces.', preco: 120, emoji: '🍓', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxtyQMzk6wLcZRfofMlWoU62CC.jpeg?Expires=1794411400&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=kHMmLTFsxyTHxypOAeQAWG8zv9~uAVtOOzExzQ~SgRjX01hbmtSC85MK3uNsA8Z-BtWlDRqW0Nk4~5I~nPjiydCAjB5WDYp3ysgqaHQHvZuzEuMHhfuT1Yk3eWP4kg0gQGdJ2Lu6-maJ9irAw2yAkNcvZx~lkh6hGQqYp4h9KZStRd2ONGJU8OVdhUnNOM0Rjf-5AAiClv7go0tYok3iZpgj53WezebKWKxM8lZghLTjsPxFrlY1uOUmCIfKWNjl~NN3EgbVRw8wD13qSrLUaZSGpnFg9Z2rGzzJkYb0-WZp5ZrCFLKI~dsC~533Af72U1EOF8X99rADN2od6bwxug__', bg: 'from-pink-100 to-red-200' },
-    { id: 'torta-banoffe', cat: 'tortas', nome: 'Torta Banoffe', desc: 'Base crocante, banana e doce de leite, creme de leite fresco e toque de cacau.', preco: 140, emoji: '🍰', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxtlOgbTiaQbPsXxhGeVIWJZlR.jpeg?Expires=1794411296&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=gJdA4ijujvBgjENHFibF4TQIieSIDcND~OBHjj975t77xXa5LaZTgxldsYJ8wUe4gNBvmWqduvMiCFEJgOA~MScK7UvnyqXVS6~ItztYaRhd7MD78yfgdPzL~MpRmaYumC~MbzDXgraY-ezYuPUes9hiCeGlN1s-fW3mhlrIFQ84Qs4WOqZbt~-4MPXtWCf8gGk2-MEAOvyoBrYLzq1J-qIYw3KECTzFZziWPrnyLGd-NvzOfZ2~SN8kB2HWaR9Yan8o43f4F97Ct3YQ0h9WwlOCNjG2BLMt6fB6XmClVAb9aWwDkGcicLSTdcCUuaH6ySBeeu75vbcdCp8ifmDQxQ__', bg: 'from-amber-100 to-orange-300' },
-    { id: 'torta-pessego', cat: 'tortas', nome: 'Torta de Pêssego', desc: 'Creme leve e delicado com pêssegos frescos.', preco: 140, emoji: '🍑', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3Lxu93KkGLCY144hNwZe0H7FrRu.jpeg?Expires=1794411484&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=CoI7so8jFJLI0InuOArnjtV4SouO7K-xbcTkZAq~GL6B3yewLtrawsH8KHqJrSegKu3kyxyyDqES0s-~HB8Pf1SIEJkJo1HMdVIT9O0LXaSt9YFo2hghQj9Ql2mimnD6SgKDoUQm1S-JL7NLirAsqkkFcHu0Dlt9AHTtIVDWBx0Ud0CB~2z6NvTgHqdGdvEBaSxsAmvVKa3NKhXIwyAEBMiiAvzv~kjdB9VIxKAXtVPVniLgZ2tA0UoZNVnhAECEU8e~ZJtIx9IMrgdJJ90I-Be8KOeVsVvwUFlWf7jff-pjWG09v8Thc0AWPl3ksuBQNNuULLmXNQicuZZLe5EIIw__', bg: 'from-orange-100 to-pink-200' },
-    { id: 'torta-damasco', cat: 'tortas', nome: 'Torta de Damasco', desc: 'Creme leve com damascos selecionados e um toque cítrico.', preco: 140, emoji: '🟠', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3Lxu3E7hwKA3N9HdoVWBNBsL4Ej.jpeg?Expires=1794411438&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=dPQb1JTPVoZQ7bnuToDN1Bbt7oCiqA5u1FUdr5b~y8043ONYr6C6kKJs8ZShCjRAoUmjC8CjaT0tfvXsOAfSpf9GdJN-a7SW5HzvAqhirRL2QAbbkUtXbIZYJZQke0O3jtK5xfk7ybvrk103PWPOXV2U41RB4IVETierpHiDywr~7V2zMkzS3imCZTtw33x4fSwoSA8irH7zFS9bVWyVxXAT9Tfp2HVc~sny41X3l-uqb3KpbSfNoPv5IslD7HHFDNyh8WAavaiDCrs7wKD2-lkx3Sjrk8oV~71P3AeGDlIU2u4~v58mkmGe9InykyS1Kj7ACcF8CvXRVJpNnwuVPQ__', bg: 'from-amber-100 to-orange-200' },
-
-    { id: 'bolo-natal', cat: 'bolos', nome: 'Bolo Natal Dourado', desc: 'Massa branca aromatizada de laranja, brigadeiro de laranja, ganache de chocolate, brigadeiro meio amargo e cobertura chantininho com decoração Papai Noel.', preco: 250, emoji: '🎄', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxuFVcpPylU6c1jY80tI2ZvuVO.jpeg?Expires=1794411536&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=p0djyrtSXxGg745dMszo36xNBqcVYLhPaFMJYBru6pOOMAJj~WqpMUBhvDhgx7uLkwkgjzcp9hovjwVOUL4nuNxk4eDef3xE5STbfPJqiTxYU9A1qypbf28MYwU29ertGnH1ix6M3s-E60ZHfJIdgscBdVw-2C-hZ8X0aiKv1TT7f3aDeb6rI3xxmXUANRilymXt8v7QYzWkESaFgmrIY8IW9f60tMOew3CksSf9uDx6B7Lq7vX2Q7D5jq5CxRP977NWGp4SJrjWyWwy1xgM77NN98cGg7KV8zaKGGfVzhF5pVAQDu3Bq8xk9ny68lLJYDDJLslAtfhHgHT8YUveHw__', pos: '50% 20%', bg: 'from-amber-200 to-yellow-400' },
-    { id: 'panetone', cat: 'bolos', nome: 'Panetone', desc: 'Tradicional, fofinho e perfumado.', preco: 65, emoji: '🎁', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxtiWk1NxBxKCKxKSZVBUiEPSt.jpeg?Expires=1794411273&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=IC-8vSQa2YUDxQ~BpP4lmzTuuSOsIBdh01-uk6jKbXukprM9z2xOKKR15xVES6cEt4ISbULL88M~Ehup~vXm0ohwrUwuyv0RwVm6A-q3WIWScg7x9vVck8MAVe6ReXMWxyW1s46JJJ4DBjtmtuHxTkDtntZU5KghqSb-BN8yF42jC3ihztmwnm9hzbn78Oyp~2vMgmrzlXczm4NtTkWPi~c2CvNkP3mKQZP5oOgxYbGo9CK8aVyg7VGNSucR~u-L6fJq7jYdwvn2GZsiFpx18zf0RLpzB92QuMJD07L-dGWH-k4OmnpRQPz8NhwfYKdpVkvfhSe1MkLnjNy7uqukyw__', bg: 'from-amber-100 to-orange-200' },
-    { id: 'chocotone', cat: 'bolos', nome: 'Chocotone', desc: 'Clássico natalino com gotas de chocolate.', preco: 65, emoji: '🍫', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3Lxtgd2mKE91K7FJf3GodeDJFDW.jpeg?Expires=1794411258&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=gsqsKCv07y0N-J7cIYKF1AoqUj7HOAKAoBRqI94c9TilUZxvivOOkOl6o61~OXscptAzAlqroAXNulqnG1qpz8VwMlminDjMhw0QJPkpcfUnn0S70pHUOxxc00q0yUogiLoWMe2AKDfikS4MgZLJ7IKDtk7hOBuzrXdKtmnNqOwRNRNVQyu86AyEpWbInuQTCK6VSQgnwnvFnrO~BFHBFolepWvdpravMv4rOh9oDfQMijgUI01B~E3E9THSh8hr0V-vFgTjSayWXd828wcEEOpdGAJ2VstgGfM8RjlMXZuD57x7W1UNy3wGTQkOfk0BLK1iiseOvJlhVW-5UO864w__', bg: 'from-stone-300 to-amber-900' },
-
-    { id: 'bisc-gingerbread', cat: 'biscoitos', nome: 'Gingerbread com Especiarias', desc: 'Biscoito artesanal com especiarias natalinas. Embalagem de 125g.', preco: 35, emoji: '🍪', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxvvQ4m4wlgntjDvHfXOgqLeNG.jpeg?Expires=1794412363&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=i2yFSrGqyAsizGO3HYceXNborF0pD4m~iM0Cb0UXURpTYglD5fFYliiUaATbheRsWytxK2-4h14Zbaj-2yrzgcgCLeu7Le1SS~QvRK0kq2EWU-qQIIvyKQYFSgLQ5ygasqa4gXhPBiOhPLI0mfI7H-UJL3QE28o8UydbupSg2QRxBOwykX-uBRWwYT6CgzaHqa~1Mi7UgiM-w7-UUVUAVSLTLqlJI0xtU5FMZt~l8IUeZ3tuwWHOjFY4ErTUfgkv5Q7H33MdKWS3mOr5j91tOMjrZV4gs6xN7xbt1tv4g-sXVQLz9uKb0XA0Yy77958BOiJEm6~GVeSlXR~R-xm6sA__', pos: '40% 70%', bg: 'from-amber-200 to-amber-400' },
-    { id: 'bisc-laranja', cat: 'biscoitos', nome: 'Laranja com Chocolate', desc: 'Combinação aromática e delicada. Embalagem de 125g.', preco: 35, emoji: '🍊', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3Lxvpg0RsYZog2op1JtOLPVl3TH.jpeg?Expires=1794412317&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=qDs87ROW60jCNZ6XKvd~lD0IT224gjyznDAdqgEWXL6JYGacQkLcU0XJkIbwcIMTN2IGrDMhz35rLOHUy-IQAkEMV~kxTiJ8Rgezs46tfEq1oStAV6wAZdx3dDZfTZJ8PSW9XkOtS2qVutFhR6aMMAIE0r-h-Ys40SOQhT41ks9bmEH7GZSurMKPlmFO4rtEP9uw3M~ll6rEX1Jl7YKwcahHqM3cu-I1oDWO7Or0o4ybxpurPuHFDA32P44vp2JqeWOhnM6XD6nlDowJPE0Q9oJCbkoX~Je2xqPx2O7pPR2~MFWg0YKOeTcfTSLrsOrNmdiO7d07UhU6HB3UeV0JtA__', pos: '50% 50%', bg: 'from-orange-100 to-amber-300' },
-    { id: 'bisc-cookies', cat: 'biscoitos', nome: 'Cookies de Chocolate', desc: 'Cookies artesanais de chocolate. Embalagem de 125g.', preco: 35, emoji: '🍪', img: 'https://d31zra5bs5df64.cloudfront.net/prod/3F2zAAtKbcKWNYSQtm8QyKRYL1r/chat/3Lxt3XPcc2QAQSmE7APqkacBxUX/3LxucTSO5D2hf62R9w2bJ3MD9gu.jpeg?Expires=1794411718&Key-Pair-Id=K2FT0I8VPJSP5H&Signature=r9MF2nkSa7QAfGmZyVPgCDEPpI1QaFBgV63u8zHs-R-JA2Yv8YxojuSwtlmcXIYIPGk8g3GPljGhfd8EcAkedXw-L6ZhupfGJ2rvXOXdpYCXHSO9RakPgqDixL8yoeNOd~DMjZ1ZmCtX4SW3a~B3UAZxSh6P77-07Rffj~L5tZU8xZZTqqHZenkZhYDAFCOKN30GFu3UycYpsFxqZicD~WkAdVFZ-uLdk8hxESUCMfJdSg6UMBrWQFHQAerf2bPIXLn8uFAxLZYmY-HC-xmvN378iEl2ck35YY5B1uyyLFjc9lCVceIN3CgdR-SFWXu7op3zEPpxQDg5fwedc9Us3g__', pos: '50% 60%', bg: 'from-stone-300 to-stone-600' }
-  ];
-
-  const carrinho = {};
-  const brl = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-  function renderTabs() {
-    const tabs = document.getElementById('tabs');
-    tabs.innerHTML = '';
-    const todas = [{ id: 'todos', label: 'Todos' }, ...categorias];
-    todas.forEach(c => {
-      const b = document.createElement('button');
-      b.textContent = c.label;
-      b.dataset.cat = c.id;
-      b.className = 'whitespace-nowrap px-4 py-2 rounded-full border border-pink-600 text-pink-700 text-sm font-medium transition hover:bg-pink-50';
-      b.onclick = () => filtrar(c.id);
-      tabs.appendChild(b);
-    });
-  }
-
-  function filtrar(catId) {
-    document.querySelectorAll('#tabs button').forEach(b => {
-      const ativo = b.dataset.cat === catId;
-      b.classList.toggle('tab-active', ativo);
-      b.classList.toggle('text-pink-700', !ativo);
-    });
-    document.querySelectorAll('[data-section]').forEach(sec => {
-      sec.style.display = (catId === 'todos' || sec.dataset.section === catId) ? '' : 'none';
-    });
-  }
-
-  function renderMenu() {
-    const main = document.getElementById('menu');
-    main.innerHTML = '';
-    categorias.forEach(cat => {
-      const sec = document.createElement('section');
-      sec.dataset.section = cat.id;
-      sec.innerHTML = `<h2 class="text-2xl font-bold text-pink-700 border-b-2 border-pink-300 pb-2 mb-6" style="font-family: Georgia, serif;">${cat.label}</h2>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>`;
-      const grid = sec.querySelector('div');
-      itens.filter(i => i.cat === cat.id).forEach(item => grid.appendChild(criarCard(item)));
-      main.appendChild(sec);
-    });
-  }
-
-  function criarCard(item) {
-    const card = document.createElement('article');
-    card.className = 'bg-white rounded-2xl shadow-md overflow-hidden flex flex-col hover:shadow-xl transition';
-    card.id = 'card-' + item.id;
-    card.innerHTML = `
-      <div class="h-40 overflow-hidden bg-gradient-to-br ${item.bg} flex items-center justify-center text-7xl" aria-hidden="true">${item.img ? `<img src="${item.img}" alt="${item.nome}" class="w-full h-full object-cover" style="object-position: ${item.pos || 'center'}; transform: scale(${item.zoom || 1})">` : item.emoji}</div>
-      <div class="p-5 flex flex-col flex-1">
-        <h3 class="font-bold text-lg text-stone-800">${item.nome}</h3>
-        <p class="text-sm text-stone-600 mt-1 flex-1">${item.desc}</p>
-        <div class="flex items-center justify-between mt-4">
-          <span class="text-xl font-bold text-pink-700">${brl(item.preco)}</span>
-          <div class="controles"></div>
+    <div class="fixed bottom-0 inset-x-0 z-30 bg-pink-400 text-white shadow-2xl">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm text-pink-100"><span id="count">0</span> item(ns) no pedido</p>
+          <p class="text-xl font-bold" id="total">R$ 0,00</p>
         </div>
-      </div>`;
-    atualizarControles(item, card.querySelector('.controles'));
-    return card;
-  }
+        <button id="verPedido" class="bg-white hover:bg-pink-100 text-pink-700 font-semibold px-5 py-2 rounded-full disabled:opacity-50">Ver pedido</button>
+      </div>
+    </div>
 
-  function atualizarControles(item, el) {
-    const qtd = carrinho[item.id] || 0;
-    if (!el) el = document.querySelector(`#card-${item.id} .controles`);
-    if (!el) return;
-    if (qtd === 0) {
-      el.innerHTML = `<button class="bg-pink-400 hover:bg-pink-300 text-white text-sm font-semibold px-4 py-2 rounded-full">Adicionar</button>`;
-      el.querySelector('button').onclick = () => alterar(item.id, 1);
-    } else {
-      el.innerHTML = `<div class="flex items-center gap-2">
-          <button class="w-8 h-8 rounded-full bg-pink-100 hover:bg-pink-200 font-bold text-pink-700">−</button>
-          <span class="w-6 text-center font-semibold">${qtd}</span>
-          <button class="w-8 h-8 rounded-full bg-pink-400 hover:bg-pink-300 text-white font-bold">+</button>
+    <div id="modal" class="hidden fixed inset-0 z-40 bg-black/50 flex items-end md:items-center justify-center p-4">
+      <div class="bg-white rounded-2xl w-full max-w-lg max-h-[80vh] flex flex-col shadow-2xl">
+        <div class="flex justify-between items-center px-5 py-4 border-b border-pink-100">
+          <h2 class="text-xl font-bold text-pink-700">Seu pedido</h2>
+          <button id="fechar" class="text-stone-500 hover:text-stone-800 text-2xl leading-none">&times;</button>
+        </div>
+        <div id="lista" class="px-5 py-4 overflow-y-auto space-y-3 flex-1"></div>
+        <div class="px-5 py-4 border-t border-pink-100 flex justify-between items-center">
+          <span class="font-semibold">Total</span>
+          <span id="totalModal" class="text-xl font-bold text-pink-700">R$ 0,00</span>
+        </div>
+        <div class="px-5 py-4 border-t border-pink-100 space-y-3">
+          <input id="cliNome" type="text" placeholder="Seu nome" class="w-full border border-pink-200 rounded-lg px-3 py-2 focus:outline-none focus:border-pink-400">
+          <input id="cliTel" type="tel" placeholder="Telefone com DDD, ex: (11) 99999-9999" class="w-full border border-pink-200 rounded-lg px-3 py-2 focus:outline-none focus:border-pink-400">
+          <p id="erroCli" class="hidden text-sm text-red-600"></p>
+          <button id="enviarWhats" class="w-full bg-green-500 hover:bg-green-400 text-white font-semibold py-3 rounded-full">Enviar pedido pelo WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    .tab-active { background-color: #f472b6; color: #fff; }
+  </style>
+
+  <script>
+    const categorias = [
+      { id: 'salgados', label: 'Salgados' },
+      { id: 'paes', label: 'Pães & Patês' },
+      { id: 'rocamboles', label: 'Rocamboles' },
+      { id: 'tortas', label: 'Tortas' },
+      { id: 'bolos', label: 'Bolo & Panetones' },
+      { id: 'biscoitos', label: 'Biscoitos' }
+    ];
+
+    // Adicione o caminho de cada foto no campo img, por exemplo: img: 'imagens/empadao-pera-gorgonzola.jpg'
+    const itens = [
+      { id: 'emp-pera', cat: 'salgados', nome: 'Empadão Pêra & Gorgonzola', desc: 'Pera delicadamente combinada com queijo gorgonzola, mel e nozes.', preco: 120, emoji: '🍐', img: 'https://chefanaaguilera.github.io/cardapio/empadao.jpeg', pos: '50% 50%', bg: 'from-amber-100 to-orange-200' },
+      { id: 'emp-camarao', cat: 'salgados', nome: 'Empadão de Camarão', desc: 'Recheio cremoso e generoso de camarões.', preco: 120, emoji: '🦐', img: 'https://chefanaaguilera.github.io/cardapio/empadao.jpeg', pos: '50% 50%', bg: 'from-orange-100 to-red-200' },
+      { id: 'emp-pernil', cat: 'salgados', nome: 'Empadão de Pernil', desc: 'Suculência do pernil com alho-poró levemente adocicado e o perfume especial do tomilho.', preco: 120, emoji: '🍖', img: 'https://chefanaaguilera.github.io/cardapio/empadao.jpeg', pos: '50% 50%', bg: 'from-rose-100 to-amber-200' },
+
+      { id: 'cesta-paes', cat: 'paes', nome: 'Cesta de Pães', desc: '2 baguetes, 2 pães francês e 1 pão italiano. Perfeitos para acompanhar os patês.', preco: 100, emoji: '🥖', img: '', pos: '50% 50%', bg: 'from-yellow-100 to-amber-300' },
+      { id: 'homus', cat: 'paes', nome: 'Patê de Homus', desc: '100g. Cremoso e suave, ideal para acompanhar a cesta de pães.', preco: 20, emoji: '🫘', img: 'https://chefanaaguilera.github.io/cardapio/pate%20homus.jpg', pos: '50% 50%', bg: 'from-lime-100 to-yellow-200' },
+      { id: 'patê-azeitonas', cat: 'paes', nome: 'Patê de Azeitonas Pretas', desc: '100g. Sabor intenso e marcante, perfeito com os pães.', preco: 20, emoji: '🫒', img: 'https://chefanaaguilera.github.io/cardapio/pate%20azeitona.jpg', pos: '50% 50%', bg: 'from-stone-200 to-stone-400' },
+
+      { id: 'roc-tropical', cat: 'rocamboles', nome: 'Rocambole Magia Tropical', desc: 'Cocada cremosa e abacaxi.', preco: 100, emoji: '🍍', img: 'https://chefanaaguilera.github.io/cardapio/rocambole%20cocada.jpeg', pos: '50% 70%', bg: 'from-yellow-100 to-lime-200' },
+      { id: 'roc-natalina', cat: 'rocamboles', nome: 'Rocambole Delícia Natalina', desc: 'Maçã, canela e doce de leite.', preco: 100, emoji: '🍎', img: 'https://chefanaaguilera.github.io/cardapio/rocambole%20delicia.jpeg', pos: '50% 50%', zoom: 1.6, bg: 'from-red-100 to-amber-200' },
+      { id: 'roc-red', cat: 'rocamboles', nome: 'Rocambole Red Velvet Natalino', desc: 'Brigadeiro cremoso de chocolate branco e morangos.', preco: 100, emoji: '🍓', img: 'https://chefanaaguilera.github.io/cardapio/rocambole%20red%20velvet%20.jpeg', pos: '50% 60%', bg: 'from-pink-100 to-red-300' },
+
+      { id: 'torta-limao', cat: 'tortas', nome: 'Torta de Limão', desc: 'Creme cítrico e refrescante com o frescor do limão.', preco: 120, emoji: '🍋', img: 'https://chefanaaguilera.github.io/cardapio/torta%20lim%C3%A3o%20.jpeg', bg: 'from-yellow-100 to-lime-200' },
+      { id: 'torta-morango', cat: 'tortas', nome: 'Torta de Morango', desc: 'Creme leve com morangos frescos e doces.', preco: 120, emoji: '🍓', img: 'https://chefanaaguilera.github.io/cardapio/torta%20morango%20.jpeg', bg: 'from-pink-100 to-red-200' },
+      { id: 'torta-banoffe', cat: 'tortas', nome: 'Torta Banoffe', desc: 'Base crocante, banana e doce de leite, creme de leite fresco e toque de cacau.', preco: 140, emoji: '🍰', img: 'https://chefanaaguilera.github.io/cardapio/torta%20banoffe%20.jpeg', bg: 'from-amber-100 to-orange-300' },
+      { id: 'torta-pessego', cat: 'tortas', nome: 'Torta de Pêssego', desc: 'Creme leve e delicado com pêssegos frescos.', preco: 140, emoji: '🍑', img: 'https://chefanaaguilera.github.io/cardapio/pessego.jpeg', bg: 'from-orange-100 to-pink-200' },
+      { id: 'torta-damasco', cat: 'tortas', nome: 'Torta de Damasco', desc: 'Creme leve com damascos selecionados e um toque cítrico.', preco: 140, emoji: '🟠', img: 'https://chefanaaguilera.github.io/cardapio/torta%20damasco.jpeg', bg: 'from-amber-100 to-orange-200' },
+
+      { id: 'bolo-natal', cat: 'bolos', nome: 'Bolo Natal Dourado', desc: 'Massa branca aromatizada de laranja, brigadeiro de laranja, ganache de chocolate, brigadeiro meio amargo e cobertura chantininho com decoração Papai Noel.', preco: 250, emoji: '🎄', img: 'https://chefanaaguilera.github.io/cardapio/bolo%20natal.jpeg', pos: '50% 20%', bg: 'from-amber-200 to-yellow-400' },
+      { id: 'panetone', cat: 'bolos', nome: 'Panetone', desc: 'Tradicional, fofinho e perfumado.', preco: 65, emoji: '🎁', img: 'https://chefanaaguilera.github.io/cardapio/panetone.jpeg', bg: 'from-amber-100 to-orange-200' },
+      { id: 'chocotone', cat: 'bolos', nome: 'Chocotone', desc: 'Clássico natalino com gotas de chocolate.', preco: 65, emoji: '🍫', img: 'https://chefanaaguilera.github.io/cardapio/chocotone.jpeg', bg: 'from-stone-300 to-amber-900' },
+
+      { id: 'bisc-gingerbread', cat: 'biscoitos', nome: 'Gingerbread com Especiarias', desc: 'Biscoito artesanal com especiarias natalinas. Embalagem de 125g.', preco: 35, emoji: '🍪', img: 'https://chefanaaguilera.github.io/cardapio/ginger.jpeg', pos: '40% 70%', bg: 'from-amber-200 to-amber-400' },
+      { id: 'bisc-laranja', cat: 'biscoitos', nome: 'Laranja com Chocolate', desc: 'Combinação aromática e delicada. Embalagem de 125g.', preco: 35, emoji: '🍊', img: 'https://chefanaaguilera.github.io/cardapio/biscoito%20laranja%20.jpeg', pos: '50% 50%', bg: 'from-orange-100 to-amber-300' },
+      { id: 'bisc-cookies', cat: 'biscoitos', nome: 'Cookies de Chocolate', desc: 'Cookies artesanais de chocolate. Embalagem de 125g.', preco: 35, emoji: '🍪', img: 'https://chefanaaguilera.github.io/cardapio/cookie.jpeg', pos: '50% 60%', bg: 'from-stone-300 to-stone-600' }
+    ];
+
+    const carrinho = {};
+    const brl = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    function renderTabs() {
+      const tabs = document.getElementById('tabs');
+      tabs.innerHTML = '';
+      const todas = [{ id: 'todos', label: 'Todos' }, ...categorias];
+      todas.forEach(c => {
+        const b = document.createElement('button');
+        b.textContent = c.label;
+        b.dataset.cat = c.id;
+        b.className = 'whitespace-nowrap px-4 py-2 rounded-full border border-pink-600 text-pink-700 text-sm font-medium transition hover:bg-pink-50';
+        b.onclick = () => filtrar(c.id);
+        tabs.appendChild(b);
+      });
+    }
+
+    function filtrar(catId) {
+      document.querySelectorAll('#tabs button').forEach(b => {
+        const ativo = b.dataset.cat === catId;
+        b.classList.toggle('tab-active', ativo);
+        b.classList.toggle('text-pink-700', !ativo);
+      });
+      document.querySelectorAll('[data-section]').forEach(sec => {
+        sec.style.display = (catId === 'todos' || sec.dataset.section === catId) ? '' : 'none';
+      });
+    }
+
+    function renderMenu() {
+      const main = document.getElementById('menu');
+      main.innerHTML = '';
+      categorias.forEach(cat => {
+        const sec = document.createElement('section');
+        sec.dataset.section = cat.id;
+        sec.innerHTML = `<h2 class="text-2xl font-bold text-pink-700 border-b-2 border-pink-300 pb-2 mb-6" style="font-family: Georgia, serif;">${cat.label}</h2>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>`;
+        const grid = sec.querySelector('div');
+        itens.filter(i => i.cat === cat.id).forEach(item => grid.appendChild(criarCard(item)));
+        main.appendChild(sec);
+      });
+    }
+
+    function criarCard(item) {
+      const card = document.createElement('article');
+      card.className = 'bg-white rounded-2xl shadow-md overflow-hidden flex flex-col hover:shadow-xl transition';
+      card.id = 'card-' + item.id;
+      card.innerHTML = `
+        <div class="h-48 overflow-hidden bg-gradient-to-br ${item.bg} flex items-center justify-center text-7xl" aria-label="Foto de ${item.nome}">${item.img ? `<img src="${item.img}" alt="${item.nome}" class="w-full h-full object-cover" style="object-position: ${item.pos || 'center'}; transform: scale(${item.zoom || 1})">` : `<div class="w-full h-full flex flex-col items-center justify-center gap-2"><span>${item.emoji}</span><span class="text-xs font-medium text-stone-600">Foto em breve</span></div>`}</div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-lg text-stone-800">${item.nome}</h3>
+          <p class="text-sm text-stone-600 mt-1 flex-1">${item.desc}</p>
+          <div class="flex items-center justify-between mt-4">
+            <span class="text-xl font-bold text-pink-700">${brl(item.preco)}</span>
+            <div class="controles"></div>
+          </div>
         </div>`;
-      const [menos, mais] = el.querySelectorAll('button');
-      menos.onclick = () => alterar(item.id, -1);
-      mais.onclick = () => alterar(item.id, 1);
+      atualizarControles(item, card.querySelector('.controles'));
+      return card;
     }
-  }
 
-  function alterar(id, delta) {
-    carrinho[id] = Math.max(0, (carrinho[id] || 0) + delta);
-    if (carrinho[id] === 0) delete carrinho[id];
-    const item = itens.find(i => i.id === id);
-    atualizarControles(item);
+    function atualizarControles(item, el) {
+      const qtd = carrinho[item.id] || 0;
+      if (!el) el = document.querySelector(`#card-${item.id} .controles`);
+      if (!el) return;
+      if (qtd === 0) {
+        el.innerHTML = `<button class="bg-pink-400 hover:bg-pink-300 text-white text-sm font-semibold px-4 py-2 rounded-full">Adicionar</button>`;
+        el.querySelector('button').onclick = () => alterar(item.id, 1);
+      } else {
+        el.innerHTML = `<div class="flex items-center gap-2">
+            <button class="w-8 h-8 rounded-full bg-pink-100 hover:bg-pink-200 font-bold text-pink-700">−</button>
+            <span class="w-6 text-center font-semibold">${qtd}</span>
+            <button class="w-8 h-8 rounded-full bg-pink-400 hover:bg-pink-300 text-white font-bold">+</button>
+          </div>`;
+        const [menos, mais] = el.querySelectorAll('button');
+        menos.onclick = () => alterar(item.id, -1);
+        mais.onclick = () => alterar(item.id, 1);
+      }
+    }
+
+    function alterar(id, delta) {
+      carrinho[id] = Math.max(0, (carrinho[id] || 0) + delta);
+      if (carrinho[id] === 0) delete carrinho[id];
+      const item = itens.find(i => i.id === id);
+      atualizarControles(item);
+      atualizarResumo();
+    }
+
+    function atualizarResumo() {
+      let total = 0, quantidade = 0;
+      for (const id in carrinho) {
+        const item = itens.find(i => i.id === id);
+        total += item.preco * carrinho[id];
+        quantidade += carrinho[id];
+      }
+      document.getElementById('total').textContent = brl(total);
+      document.getElementById('totalModal').textContent = brl(total);
+      document.getElementById('count').textContent = quantidade;
+      document.getElementById('verPedido').disabled = quantidade === 0;
+      renderLista();
+    }
+
+    function renderLista() {
+      const lista = document.getElementById('lista');
+      const ids = Object.keys(carrinho);
+      if (ids.length === 0) {
+        lista.innerHTML = '<p class="text-stone-500 text-center py-6">Seu pedido está vazio. Escolha algo delicioso! 🎄</p>';
+        return;
+      }
+      lista.innerHTML = ids.map(id => {
+        const item = itens.find(i => i.id === id);
+        const q = carrinho[id];
+        return `<div class="flex justify-between items-center gap-3 border-b border-pink-100 pb-2">
+          <div><p class="font-semibold">${item.nome}</p><p class="text-sm text-stone-500">${q} × ${brl(item.preco)}</p></div>
+          <span class="font-bold text-pink-700">${brl(item.preco * q)}</span>
+        </div>`;
+      }).join('');
+    }
+
+    document.getElementById('verPedido').onclick = () => {
+      renderLista();
+      document.getElementById('modal').classList.remove('hidden');
+    };
+    document.getElementById('fechar').onclick = () => {
+      document.getElementById('modal').classList.add('hidden');
+    };
+    document.getElementById('modal').onclick = e => {
+      if (e.target.id === 'modal') e.target.classList.add('hidden');
+    };
+
+    document.getElementById('enviarWhats').onclick = () => {
+      const nome = document.getElementById('cliNome').value.trim();
+      const tel = document.getElementById('cliTel').value.replace(/\D/g, '');
+      const erro = document.getElementById('erroCli');
+      if (!nome) {
+        erro.textContent = 'Informe seu nome.';
+        erro.classList.remove('hidden');
+        return;
+      }
+      if (tel.length < 10 || tel.length > 11) {
+        erro.textContent = 'Informe o telefone com DDD.';
+        erro.classList.remove('hidden');
+        return;
+      }
+      erro.classList.add('hidden');
+
+      const linhas = ['*Novo pedido - Ana Aguilera*', `Nome: ${nome}`, `Telefone: ${tel}`, ''];
+      let total = 0;
+      for (const id in carrinho) {
+        const item = itens.find(i => i.id === id);
+        const q = carrinho[id];
+        total += item.preco * q;
+        linhas.push(`${q}x ${item.nome} - ${brl(item.preco * q)}`);
+      }
+      linhas.push('', `Total: ${brl(total)}`);
+
+      const url = 'https://wa.me/5511966230856?text=' + encodeURIComponent(linhas.join('\n'));
+      window.open(url, '_blank');
+    };
+
+    renderTabs();
+    renderMenu();
+    filtrar('todos');
     atualizarResumo();
-  }
-
-  function atualizarResumo() {
-    let total = 0, quantidade = 0;
-    for (const id in carrinho) {
-      const item = itens.find(i => i.id === id);
-      total += item.preco * carrinho[id];
-      quantidade += carrinho[id];
-    }
-    document.getElementById('total').textContent = brl(total);
-    document.getElementById('totalModal').textContent = brl(total);
-    document.getElementById('count').textContent = quantidade;
-    document.getElementById('verPedido').disabled = quantidade === 0;
-    renderLista();
-  }
-
-  function renderLista() {
-    const lista = document.getElementById('lista');
-    const ids = Object.keys(carrinho);
-    if (ids.length === 0) {
-      lista.innerHTML = '<p class="text-stone-500 text-center py-6">Seu pedido está vazio. Escolha algo delicioso! 🎄</p>';
-      return;
-    }
-    lista.innerHTML = ids.map(id => {
-      const item = itens.find(i => i.id === id);
-      const q = carrinho[id];
-      return `<div class="flex justify-between items-center gap-3 border-b border-pink-100 pb-2">
-        <div><p class="font-semibold">${item.nome}</p><p class="text-sm text-stone-500">${q} × ${brl(item.preco)}</p></div>
-        <span class="font-bold text-pink-700">${brl(item.preco * q)}</span>
-      </div>`;
-    }).join('');
-  }
-
-  document.getElementById('verPedido').onclick = () => {
-    renderLista();
-    document.getElementById('modal').classList.remove('hidden');
-  };
-  document.getElementById('fechar').onclick = () => {
-    document.getElementById('modal').classList.add('hidden');
-  };
-  document.getElementById('modal').onclick = e => {
-    if (e.target.id === 'modal') e.target.classList.add('hidden');
-  };
-
-  document.getElementById('enviarWhats').onclick = () => {
-    const nome = document.getElementById('cliNome').value.trim();
-    const tel = document.getElementById('cliTel').value.replace(/\D/g, '');
-    const erro = document.getElementById('erroCli');
-    if (!nome) {
-      erro.textContent = 'Informe seu nome.';
-      erro.classList.remove('hidden');
-      return;
-    }
-    if (tel.length < 10 || tel.length > 11) {
-      erro.textContent = 'Informe o telefone com DDD.';
-      erro.classList.remove('hidden');
-      return;
-    }
-    erro.classList.add('hidden');
-
-    const linhas = ['*Novo pedido - Ana Aguilera*', `Nome: ${nome}`, `Telefone: ${tel}`, ''];
-    let total = 0;
-    for (const id in carrinho) {
-      const item = itens.find(i => i.id === id);
-      const q = carrinho[id];
-      total += item.preco * q;
-      linhas.push(`${q}x ${item.nome} - ${brl(item.preco * q)}`);
-    }
-    linhas.push('', `Total: ${brl(total)}`);
-
-    const url = 'https://wa.me/5511966230856?text=' + encodeURIComponent(linhas.join('\n'));
-    window.open(url, '_blank');
-  };
-
-  renderTabs();
-  renderMenu();
-  filtrar('todos');
-  atualizarResumo();
-</script></body></html>
+  </script>
+</body>
+</html>
