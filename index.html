@@ -16,7 +16,7 @@
 <body>
   <div class="min-h-screen bg-pink-50 text-stone-800 pb-32 font-sans">
     <header class="bg-gradient-to-b from-pink-200 to-pink-300 text-white text-center pt-0 pb-10 px-4 shadow-lg">
-      <img src="https://chefanaaguilera.github.io/cardapio/boneca.png" alt="Ana Aguilera - Chef" class="relative z-10 block w-64 h-64 md:w-80 md:h-80 object-cover mx-auto mb-0 mt-8">
+      <img src="./imagens//boneca.png" alt="Ana Aguilera - Chef" class="relative z-10 block w-64 h-64 md:w-80 md:h-80 object-cover mx-auto mb-0 mt-8">
       <p class="text-sm tracking-[0.3em] uppercase text-pink-100">Chef</p>
       <h1 class="text-4xl md:text-5xl font-bold mt-1" style="font-family: Georgia, serif;">Ana Aguilera</h1>
       <p class="mt-3 text-lg text-pink-50">Cardápio Especial de Natal ✨</p>
@@ -76,31 +76,31 @@
 
     // Adicione o caminho de cada foto no campo img, por exemplo: img: 'imagens/empadao-pera-gorgonzola.jpg'
     const itens = [
-      { id: 'emp-pera', cat: 'salgados', nome: 'Empadão Pêra & Gorgonzola', desc: 'Pera delicadamente combinada com queijo gorgonzola, mel e nozes.', preco: 120, emoji: '🍐', img: 'https://chefanaaguilera.github.io/cardapio/empadao.jpeg', pos: '50% 50%', bg: 'from-amber-100 to-orange-200' },
-      { id: 'emp-camarao', cat: 'salgados', nome: 'Empadão de Camarão', desc: 'Recheio cremoso e generoso de camarões.', preco: 120, emoji: '🦐', img: 'https://chefanaaguilera.github.io/cardapio/empadao.jpeg', pos: '50% 50%', bg: 'from-orange-100 to-red-200' },
-      { id: 'emp-pernil', cat: 'salgados', nome: 'Empadão de Pernil', desc: 'Suculência do pernil com alho-poró levemente adocicado e o perfume especial do tomilho.', preco: 120, emoji: '🍖', img: 'https://chefanaaguilera.github.io/cardapio/empadao.jpeg', pos: '50% 50%', bg: 'from-rose-100 to-amber-200' },
+      { id: 'emp-pera', cat: 'salgados', nome: 'Empadão Pêra & Gorgonzola', desc: 'Pera delicadamente combinada com queijo gorgonzola, mel e nozes.', preco: 120, emoji: '🍐', img: './imagens//empadao.jpeg', pos: '50% 50%', bg: 'from-amber-100 to-orange-200' },
+      { id: 'emp-camarao', cat: 'salgados', nome: 'Empadão de Camarão', desc: 'Recheio cremoso e generoso de camarões.', preco: 120, emoji: '🦐', img: './imagens//empadao.jpeg', pos: '50% 50%', bg: 'from-orange-100 to-red-200' },
+      { id: 'emp-pernil', cat: 'salgados', nome: 'Empadão de Pernil', desc: 'Suculência do pernil com alho-poró levemente adocicado e o perfume especial do tomilho.', preco: 120, emoji: '🍖', img: './imagens//empadao.jpeg', pos: '50% 50%', bg: 'from-rose-100 to-amber-200' },
 
-      { id: 'cesta-paes', cat: 'paes', nome: 'Cesta de Pães', desc: '2 baguetes, 2 pães francês e 1 pão italiano. Perfeitos para acompanhar os patês.', preco: 100, emoji: '🥖', img: '', pos: '50% 50%', bg: 'from-yellow-100 to-amber-300' },
-      { id: 'homus', cat: 'paes', nome: 'Patê de Homus', desc: '100g. Cremoso e suave, ideal para acompanhar a cesta de pães.', preco: 20, emoji: '🫘', img: 'https://chefanaaguilera.github.io/cardapio/pate%20homus.jpg', pos: '50% 50%', bg: 'from-lime-100 to-yellow-200' },
-      { id: 'patê-azeitonas', cat: 'paes', nome: 'Patê de Azeitonas Pretas', desc: '100g. Sabor intenso e marcante, perfeito com os pães.', preco: 20, emoji: '🫒', img: 'https://chefanaaguilera.github.io/cardapio/pate%20azeitona.jpg', pos: '50% 50%', bg: 'from-stone-200 to-stone-400' },
+      { id: 'cesta-paes', cat: 'paes', nome: 'Cesta de Pães', desc: '2 baguetes, 2 pães francês e 1 pão italiano. Perfeitos para acompanhar os patês.', preco: 100, emoji: '🥖', img: './imagens//cesta_paes.jpeg', pos: '50% 50%', bg: 'from-yellow-100 to-amber-300' },
+      { id: 'homus', cat: 'paes', nome: 'Patê de Homus', desc: '100g. Cremoso e suave, ideal para acompanhar a cesta de pães.', preco: 20, emoji: '🫘', img: './imagens//pate_homus.jpg', pos: '50% 50%', bg: 'from-lime-100 to-yellow-200' },
+      { id: 'patê-azeitonas', cat: 'paes', nome: 'Patê de Azeitonas Pretas', desc: '100g. Sabor intenso e marcante, perfeito com os pães.', preco: 20, emoji: '🫒', img: './imagens//pate_azeitona.jpg', pos: '50% 50%', bg: 'from-stone-200 to-stone-400' },
 
-      { id: 'roc-tropical', cat: 'rocamboles', nome: 'Rocambole Magia Tropical', desc: 'Cocada cremosa e abacaxi.', preco: 100, emoji: '🍍', img: 'https://chefanaaguilera.github.io/cardapio/rocambole%20cocada.jpeg', pos: '50% 70%', bg: 'from-yellow-100 to-lime-200' },
-      { id: 'roc-natalina', cat: 'rocamboles', nome: 'Rocambole Delícia Natalina', desc: 'Maçã, canela e doce de leite.', preco: 100, emoji: '🍎', img: 'https://chefanaaguilera.github.io/cardapio/rocambole%20delicia.jpeg', pos: '50% 50%', zoom: 1.6, bg: 'from-red-100 to-amber-200' },
-      { id: 'roc-red', cat: 'rocamboles', nome: 'Rocambole Red Velvet Natalino', desc: 'Brigadeiro cremoso de chocolate branco e morangos.', preco: 100, emoji: '🍓', img: 'https://chefanaaguilera.github.io/cardapio/rocambole%20red%20velvet%20.jpeg', pos: '50% 60%', bg: 'from-pink-100 to-red-300' },
+      { id: 'roc-tropical', cat: 'rocamboles', nome: 'Rocambole Magia Tropical', desc: 'Cocada cremosa e abacaxi.', preco: 100, emoji: '🍍', img: './imagens//rocambole_cocada.jpeg', pos: '50% 70%', bg: 'from-yellow-100 to-lime-200' },
+      { id: 'roc-natalina', cat: 'rocamboles', nome: 'Rocambole Delícia Natalina', desc: 'Maçã, canela e doce de leite.', preco: 100, emoji: '🍎', img: './imagens//rocambole_delicia.jpeg', pos: '50% 50%', zoom: 1.6, bg: 'from-red-100 to-amber-200' },
+      { id: 'roc-red', cat: 'rocamboles', nome: 'Rocambole Red Velvet Natalino', desc: 'Brigadeiro cremoso de chocolate branco e morangos.', preco: 100, emoji: '🍓', img: './imagens//rocambole_red_velvet.jpeg', pos: '50% 60%', bg: 'from-pink-100 to-red-300' },
 
-      { id: 'torta-limao', cat: 'tortas', nome: 'Torta de Limão', desc: 'Creme cítrico e refrescante com o frescor do limão.', preco: 120, emoji: '🍋', img: 'https://chefanaaguilera.github.io/cardapio/torta%20lim%C3%A3o%20.jpeg', bg: 'from-yellow-100 to-lime-200' },
-      { id: 'torta-morango', cat: 'tortas', nome: 'Torta de Morango', desc: 'Creme leve com morangos frescos e doces.', preco: 120, emoji: '🍓', img: 'https://chefanaaguilera.github.io/cardapio/torta%20morango%20.jpeg', bg: 'from-pink-100 to-red-200' },
-      { id: 'torta-banoffe', cat: 'tortas', nome: 'Torta Banoffe', desc: 'Base crocante, banana e doce de leite, creme de leite fresco e toque de cacau.', preco: 140, emoji: '🍰', img: 'https://chefanaaguilera.github.io/cardapio/torta%20banoffe%20.jpeg', bg: 'from-amber-100 to-orange-300' },
-      { id: 'torta-pessego', cat: 'tortas', nome: 'Torta de Pêssego', desc: 'Creme leve e delicado com pêssegos frescos.', preco: 140, emoji: '🍑', img: 'https://chefanaaguilera.github.io/cardapio/pessego.jpeg', bg: 'from-orange-100 to-pink-200' },
-      { id: 'torta-damasco', cat: 'tortas', nome: 'Torta de Damasco', desc: 'Creme leve com damascos selecionados e um toque cítrico.', preco: 140, emoji: '🟠', img: 'https://chefanaaguilera.github.io/cardapio/torta%20damasco.jpeg', bg: 'from-amber-100 to-orange-200' },
+      { id: 'torta-limao', cat: 'tortas', nome: 'Torta de Limão', desc: 'Creme cítrico e refrescante com o frescor do limão.', preco: 120, emoji: '🍋', img: './imagens//torta_limao.jpeg', bg: 'from-yellow-100 to-lime-200' },
+      { id: 'torta-morango', cat: 'tortas', nome: 'Torta de Morango', desc: 'Creme leve com morangos frescos e doces.', preco: 120, emoji: '🍓', img: './imagens//torta_morango.jpeg', bg: 'from-pink-100 to-red-200' },
+      { id: 'torta-banoffe', cat: 'tortas', nome: 'Torta Banoffe', desc: 'Base crocante, banana e doce de leite, creme de leite fresco e toque de cacau.', preco: 140, emoji: '🍰', img: './imagens//torta_banoffe.jpeg', bg: 'from-amber-100 to-orange-300' },
+      { id: 'torta-pessego', cat: 'tortas', nome: 'Torta de Pêssego', desc: 'Creme leve e delicado com pêssegos frescos.', preco: 140, emoji: '🍑', img: './imagens//pessego.jpeg', bg: 'from-orange-100 to-pink-200' },
+      { id: 'torta-damasco', cat: 'tortas', nome: 'Torta de Damasco', desc: 'Creme leve com damascos selecionados e um toque cítrico.', preco: 140, emoji: '🟠', img: './imagens//torta_damasco.jpeg', bg: 'from-amber-100 to-orange-200' },
 
-      { id: 'bolo-natal', cat: 'bolos', nome: 'Bolo Natal Dourado', desc: 'Massa branca aromatizada de laranja, brigadeiro de laranja, ganache de chocolate, brigadeiro meio amargo e cobertura chantininho com decoração Papai Noel.', preco: 250, emoji: '🎄', img: 'https://chefanaaguilera.github.io/cardapio/bolo%20natal.jpeg', pos: '50% 20%', bg: 'from-amber-200 to-yellow-400' },
-      { id: 'panetone', cat: 'bolos', nome: 'Panetone', desc: 'Tradicional, fofinho e perfumado.', preco: 65, emoji: '🎁', img: 'https://chefanaaguilera.github.io/cardapio/panetone.jpeg', bg: 'from-amber-100 to-orange-200' },
-      { id: 'chocotone', cat: 'bolos', nome: 'Chocotone', desc: 'Clássico natalino com gotas de chocolate.', preco: 65, emoji: '🍫', img: 'https://chefanaaguilera.github.io/cardapio/chocotone.jpeg', bg: 'from-stone-300 to-amber-900' },
+      { id: 'bolo-natal', cat: 'bolos', nome: 'Bolo Natal Dourado', desc: 'Massa branca aromatizada de laranja, brigadeiro de laranja, ganache de chocolate, brigadeiro meio amargo e cobertura chantininho com decoração Papai Noel.', preco: 250, emoji: '🎄', img: './imagens//bolo_natal.jpeg', pos: '50% 20%', bg: 'from-amber-200 to-yellow-400' },
+      { id: 'panetone', cat: 'bolos', nome: 'Panetone', desc: 'Tradicional, fofinho e perfumado.', preco: 65, emoji: '🎁', img: './imagens//panetone.jpeg', bg: 'from-amber-100 to-orange-200' },
+      { id: 'chocotone', cat: 'bolos', nome: 'Chocotone', desc: 'Clássico natalino com gotas de chocolate.', preco: 65, emoji: '🍫', img: './imagens//chocotone.jpeg', bg: 'from-stone-300 to-amber-900' },
 
-      { id: 'bisc-gingerbread', cat: 'biscoitos', nome: 'Gingerbread com Especiarias', desc: 'Biscoito artesanal com especiarias natalinas. Embalagem de 125g.', preco: 35, emoji: '🍪', img: 'https://chefanaaguilera.github.io/cardapio/ginger.jpeg', pos: '40% 70%', bg: 'from-amber-200 to-amber-400' },
-      { id: 'bisc-laranja', cat: 'biscoitos', nome: 'Laranja com Chocolate', desc: 'Combinação aromática e delicada. Embalagem de 125g.', preco: 35, emoji: '🍊', img: 'https://chefanaaguilera.github.io/cardapio/biscoito%20laranja%20.jpeg', pos: '50% 50%', bg: 'from-orange-100 to-amber-300' },
-      { id: 'bisc-cookies', cat: 'biscoitos', nome: 'Cookies de Chocolate', desc: 'Cookies artesanais de chocolate. Embalagem de 125g.', preco: 35, emoji: '🍪', img: 'https://chefanaaguilera.github.io/cardapio/cookie.jpeg', pos: '50% 60%', bg: 'from-stone-300 to-stone-600' }
+      { id: 'bisc-gingerbread', cat: 'biscoitos', nome: 'Gingerbread com Especiarias', desc: 'Biscoito artesanal com especiarias natalinas. Embalagem de 125g.', preco: 35, emoji: '🍪', img: './imagens//ginger.jpeg', pos: '40% 70%', bg: 'from-amber-200 to-amber-400' },
+      { id: 'bisc-laranja', cat: 'biscoitos', nome: 'Laranja com Chocolate', desc: 'Combinação aromática e delicada. Embalagem de 125g.', preco: 35, emoji: '🍊', img: './imagens//biscoito_laranja.jpeg', pos: '50% 50%', bg: 'from-orange-100 to-amber-300' },
+      { id: 'bisc-cookies', cat: 'biscoitos', nome: 'Cookies de Chocolate', desc: 'Cookies artesanais de chocolate. Embalagem de 125g.', preco: 35, emoji: '🍪', img: './imagens//cookie.jpeg', pos: '50% 60%', bg: 'from-stone-300 to-stone-600' }
     ];
 
     const carrinho = {};
@@ -150,7 +150,7 @@
       card.className = 'bg-white rounded-2xl shadow-md overflow-hidden flex flex-col hover:shadow-xl transition';
       card.id = 'card-' + item.id;
       card.innerHTML = `
-        <div class="h-48 overflow-hidden bg-gradient-to-br ${item.bg} flex items-center justify-center text-7xl" aria-label="Foto de ${item.nome}">${item.img ? `<img src="${item.img}" alt="${item.nome}" class="w-full h-full object-cover" style="object-position: ${item.pos || 'center'}; transform: scale(${item.zoom || 1})">` : `<div class="w-full h-full flex flex-col items-center justify-center gap-2"><span>${item.emoji}</span><span class="text-xs font-medium text-stone-600">Foto em breve</span></div>`}</div>
+        <div class="h-48 overflow-hidden bg-gradient-to-br ${item.bg} flex items-center justify-center text-7xl" aria-label="Foto de ${item.nome}">${item.img ? `<img src="${item.img}" alt="${item.nome}" class="w-full h-full object-cover" style="object-position: ${item.pos || 'center'}; transform: scale(${item.zoom || 1})">` : `<div class="w-full h-full flex flex-col items-center justify-center gap-2"><span>${item.emoji}</span><span class="text-xs font-medium text-stone-600"></span></div>`}</div>
         <div class="p-5 flex flex-col flex-1">
           <h3 class="font-bold text-lg text-stone-800">${item.nome}</h3>
           <p class="text-sm text-stone-600 mt-1 flex-1">${item.desc}</p>
